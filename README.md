@@ -1,130 +1,136 @@
 # Financial Data Reconciliation & Budget Forecasting
 
-**Python · pandas · NumPy · Excel · Financial analysis · Scenario modeling**
+**Python · pandas · NumPy · Excel · Financial analysis · Scenario forecasting**
 
-An end-to-end analysis of a **simulated $60 million, four-year project budget**, from a messy general-ledger export to a management-ready funding assessment. The case combines transaction cleaning, financial reconciliation, spending analysis, forecast comparison, and department-level variance investigation.
+An end-to-end financial analysis of a **simulated $60 million project budget (2030–2033)**. Starting with a raw general-ledger export, the project cleans and reconciles transactions, compares expenditure against the approved plan, estimates funding gaps, and identifies departments requiring management attention.
 
-The initial exercise was completed under a roughly five-hour time constraint; the documentation and reporting artifacts were expanded afterward. The figures describe a **fictional case study**, not an actual employer or investment portfolio.
+The initial case exercise was completed under an approximately **five-hour time constraint**. Documentation and presentation materials were developed further afterward. All financial figures are from a **fictional case study**, not a real employer or investment portfolio.
 
-## Executive summary
+## Key findings
 
-**As of June 2032, Project X had spent $45.96 million (76.6% of its funding) after 62.5% of its planned timeline.** Spending exceeded the time-phased baseline by **$7.22 million**. Both the department-submitted forecast and a recent-spending-based projection indicated that the project would exceed its **$60 million funding ceiling**.
+As of **June 30, 2032**, the project had spent **$45.96 million**, or **76.6% of its total funding**, with 62.5% of its planned duration elapsed. Actual spending exceeded the time-phased baseline by approximately **$7.22 million**.
 
-| Measure | Result |
-| --- | ---: |
+| Metric | Result |
+|---|---:|
 | Total funding ceiling | $60.00M |
 | Approved department baseline | $58.00M |
-| Management reserve (included in funding ceiling) | $2.00M |
-| Posted actual spending through June 2032 | $45.96M |
-| Planned spending through June 2032 | $38.73M |
-| Spending above time-phased plan | **$7.22M** |
-| Funding remaining at reporting date | $14.04M |
+| Management reserve (already included in ceiling) | $2.00M |
+| Posted actuals through June 2032 | $45.96M |
+| Time-phased plan through June 2032 | $38.73M |
+| Spending above phased plan | **$7.22M** |
+| Funding remaining as of June 2032 | $14.04M |
 
-### Projected cost at completion
+### Forecast scenarios
 
-| Scenario | Estimated future spend | Total estimated cost | Over $60M ceiling |
-| --- | ---: | ---: | ---: |
+| Scenario | Future spend | Cost at completion | Above $60M ceiling |
+|---|---:|---:|---:|
 | Department-submitted forecast (June 2032 vintage) | $19.83M | $65.79M | **$5.79M** |
-| Recent spending relative to the phased plan | $23.84M | $69.79M | **$9.79M** |
+| Recent spending relative to phased plan | $23.84M | $69.79M | **$9.79M** |
 | Flat six-month burn rate (stress sensitivity) | $40.86M | $86.82M | **$26.82M** |
 
-The **plan-phased projection** is used as a conservative *challenge scenario*, not as a proven best estimate. The flat burn-rate projection is a stress test rather than the base case.
+The **plan-phased continuation** provides a challenge/risk scenario, not a proven best estimate. The flat-burn calculation is deliberately presented as a stress sensitivity. Both primary scenarios imply a funding shortfall.
 
-## What the analysis covers
+## Analytical workflow
 
-### 1. General-ledger cleaning and validation
+### 1. Data cleaning and reconciliation
 
-- Corrected misplaced spreadsheet headers, report totals, mixed posting-period formats, and inconsistent field types.
-- Standardized record types, forecast versions, departments, transaction classes, account codes, descriptions, and signed dollar amounts using the case's accounting rules.
-- Identified **18 exact duplicate copies** totaling **$159,832.69** and excluded those copies while retaining legitimate reversal entries.
-- Retained an audit trail and verified the resulting **5,250 cleaned transaction lines** across actuals and forecast vintages.
-- Separated posted actuals from superseded and current forecast versions to avoid double counting.
+- Identified the correct field names in a raw export containing displaced headers and report-total rows.
+- Standardized posting periods, transaction classifications, forecast vintages, identifiers, and signed amounts using the supplied accounting rules.
+- Removed **18 confirmed duplicate copies ($159,832.69)** while preserving valid reversing entries.
+- Maintained an audit trail and established **5,250 cleaned transaction lines** across actuals and historical/current forecasts.
+- Disclosed source-control discrepancies rather than forcing cleaned detail to agree with printed subtotal cells.
 
-### 2. Spending and budget variance analysis
+### 2. Budget-versus-actual analysis
 
-- Reconciled the approved **$58M baseline** across 48 months and 10 departments, broken out by labor and non-labor costs.
-- Compared actual expenditures with the **monthly phased budget**, rather than assuming spending should progress evenly with calendar time.
-- Summarized expenditures by year, cost class, and department.
-- Flagged the largest historical department overruns: **Department 3 (+$1.85M), Department 7 (+$1.40M), and Department 4 (+$1.19M)**.
+- Reconciled the **$58M approved baseline** across 10 departments, labor/non-labor categories, and the 48-month planning period.
+- Compared posted actuals with **time-phased baseline spending**, not just the percentage of elapsed calendar time.
+- Summarized spending by year, category, and department.
+- Identified major historical department overruns: **Department 3 (+$1.85M), Department 7 (+$1.40M), and Department 4 (+$1.19M)**.
 
-### 3. Forecasting and management recommendations
+### 3. Scenario forecasting and recommendations
 
-- Evaluated the current department-submitted forecast against an alternative projection based on recent spending relative to the phased plan.
-- Tested a third, intentionally aggressive flat-burn scenario.
-- Quantified funding gaps and identified the departments requiring updated cost estimates and commitment reviews.
-- Recommended spending controls, revised estimates to complete, and **verified** reductions sufficient to close the forecast shortfall. Proposed reduction targets are illustrative, not confirmed savings.
+- Combined posted actuals through June 2032 with the applicable June-2032 forecast for July 2032–December 2033.
+- Built an alternative forecast using recent actual spending relative to the corresponding phased plan.
+- Evaluated a flat-burn stress case as a sensitivity, not a realistic base forecast.
+- Recommended department-level estimate reviews, discretionary-spend controls, and **verification of feasible reductions** before claiming any savings.
 
-## Methods
+## Methodology
 
-**Forecast selection:** Historical expenditure includes only `Actual` / `Posted` records through **June 2032**. Future expenditure uses the `Fcst Jun-32` vintage for **July 2032–December 2033**; the superseded `Fcst Dec-31` vintage is not added to the current forecast.
+**Version control:** Historical costs use only `Actual` / `Posted` entries through June 2032. Future submitted costs use the `Fcst Jun-32` vintage. The superseded `Fcst Dec-31` vintage is not added to current projections.
 
-**Submitted completion estimate**
+**Submitted forecast**
 
 ```text
-Completion cost = Posted actuals + June-2032 submitted future forecast
+Cost at completion = Posted actuals + June-2032 future forecast
 ```
 
-**Recent spending / phased-plan scenario**
+**Recent spending relative to the phased plan**
 
 ```text
 Recent spending factor = Jan–Jun 2032 actuals / Jan–Jun 2032 phased baseline
-Projected future spend = Recent spending factor × Remaining phased baseline
-Completion cost = Posted actuals + Projected future spend
+Future spend = Recent spending factor × Remaining phased baseline
+Cost at completion = Posted actuals + Future spend
 ```
 
 **Flat-burn stress sensitivity**
 
 ```text
-Projected future spend = (Jan–Jun 2032 actuals / 6) × 18 remaining months
+Future spend = (Jan–Jun 2032 actuals / 6) × 18 remaining months
 ```
 
-The analysis keeps the **$2M management reserve inside the $60M funding ceiling**. It is not treated as additional funding.
+The $2M management reserve is **already part of** the $60M ceiling, not additional funding.
 
-## Repository files
+## Repository structure
 
 ```text
 financial-data-reconciliation-forecasting/
-├── README.md
-├── Project_X_Complete_Analysis.ipynb       # Cleaning, reconciliation, analysis, QA
-├── Project_X_Financial_Analysis_Workbook.xlsx # Linked summary formulas and charts
-├── Project_X_Executive_Summary.pdf         # One-page management decision summary
-├── requirements.txt
-└── .gitignore
+├── Complete_Analysis.ipynb          # Reproducible cleaning, validation, scenarios, and analysis
+├── Executive_Summary.pdf            # One-page management summary
+├── ProjectX_Student_Data_Pack.xlsx  # Case-study input data (see data-use note below)
+└── README.md
 ```
-
-The original input, `ProjectX_Student_Data_Pack.xlsx`, is **not included** in this repository package. The notebook requires it to rerun transaction-level calculations. Do not publish the case-provider's original material without permission.
 
 ## Reproducing the analysis
 
-1. Clone the repository and install the Python packages:
+1. Clone the repository:
 
    ```bash
-   python -m pip install -r requirements.txt
+   git clone https://github.com/Binhe-Jia/financial-data-reconciliation-forecasting.git
+   cd financial-data-reconciliation-forecasting
    ```
 
-2. If you have permission to access the original case data, place **`ProjectX_Student_Data_Pack.xlsx` in the repository root** alongside the notebook. The input workbook must contain the `GL_Extract`, `Baseline_Plan`, `Funding`, `Dept_Directory`, and `Data_Dictionary` sheets.
-3. Open `Project_X_Complete_Analysis.ipynb` in Jupyter and select **Restart Kernel and Run All Cells**.
-4. Inspect the validation assertions, raw-to-clean bridge, scenario tables, department watchlist, and open reconciliation exceptions.
-5. Open the Excel workbook and PDF for the management-facing presentation of the existing results.
+2. Install the Python/Jupyter dependencies (Python 3.10+ recommended):
 
-**Important distinction:** The supplied Excel workbook is a **linked, aggregate-level reporting workbook** populated from results already calculated in the notebook. It does not contain the original 5,250-line ledger or every month-by-department baseline input. It should not be represented as an independently recalculating, transaction-level model until the original input data is supplied and linked.
+   ```bash
+   python -m pip install notebook ipykernel numpy pandas matplotlib openpyxl
+   ```
 
-## Data-quality findings and limitations
+3. Confirm `ProjectX_Student_Data_Pack.xlsx` is in the same folder as `Complete_Analysis.ipynb`.
+4. Open `Complete_Analysis.ipynb` in Jupyter and select **Kernel → Restart & Run All**.
+5. Inspect the cleaning audit trail, validation checks, comparison scenarios, department watchlist, and data-quality exceptions. `Executive_Summary.pdf` contains the management-facing conclusions.
 
-A successful raw-to-clean bridge does **not** resolve every source-data question. The printed FY2030 and FY2031 subtotals and the source grand total still disagree with totals calculated from cleaned transaction lines. Their differences are approximately **$0.44M, $1.37M, and $2.62M**, respectively. These variances are disclosed rather than eliminated with unsupported adjustments.
+The notebook is the computational analysis; the repository **does not currently include a separately published, fully transaction-linked Excel reporting model or an oral presentation**.
 
-Additional limitations:
+## Data quality and limitations
 
-- The latest department forecast is a submitted planning estimate, not an audited set of commitments.
-- The relative-to-plan scenario assumes recent cost pressure persists; its results are sensitive to the recent six-month window.
-- Department-level phased-baseline coverage in the published Excel summary remains partial without the source workbook.
-- Proposed cuts require validation against contracts, staffing obligations, and delivery priorities before implementation.
-- The original case also requested an oral readout and a fully transaction-linked Excel analysis workbook; the repository contains a written executive summary, a computational notebook, and an aggregate reporting workbook, **not evidence of a delivered oral presentation or a complete source-linked Excel model**.
+- The printed FY2030, FY2031, and grand-total control cells do not agree with sums of the cleaned transaction records; differences are approximately **$0.44M, $1.37M, and $2.62M**. These exceptions remain explicitly unresolved.
+- The submitted forecast is a planning estimate, not an audited commitment schedule.
+- The recent-spending scenario assumes cost pressure persists and is sensitive to the chosen six-month observation window.
+- Recommended cuts are **illustrative targets**, not demonstrated realizable contract or staffing savings.
+- The reporting date is **June 2032 within the fictional scenario**, not today's date.
+
+### Data-use note
+
+The source workbook was supplied as part of a case exercise. Its presence here **does not imply a right to redistribute it**. Confirm the case provider permits public sharing; if not, remove the source workbook from the repository (and, if needed, Git history), and provide instructions for authorized users to obtain and place their own copy locally.
 
 ## Skills demonstrated
 
-Financial data cleaning and reconciliation · Python/pandas · Accounting-policy validation · Time-series aggregation · Budget versus actual analysis · Forecast scenario design · Department variance analysis · Reproducible notebooks · Excel reporting · Executive communication
+**Data preparation and validation:** Python, pandas, messy Excel extraction, deduplication, policy-based classification, reconciliation, traceable quality checks.
+
+**Financial analytics:** Budget-versus-actual analysis, phased baselines, cash-spend forecasts, scenario comparisons, variance investigation, management recommendations.
+
+**Communication:** Executive-summary writing, quantified risks, uncertainty disclosure, and decisions supported by reproducible analysis.
 
 ---
 
-*Portfolio case study for learning and demonstration. All project amounts and department labels originate from a simulated exercise. Analysis reflects a June 2032 reporting cut-off, not the current calendar year.*
+*Portfolio exercise for analytical demonstration. Figures are simulated and should not be interpreted as actual corporate financial results.*
